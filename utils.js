@@ -119,6 +119,7 @@ function setupCustomCursor() {
   const cursorDot = document.querySelector('.cursor-dot');
   const cursorOutline = document.querySelector('.cursor-outline');
   
+  // Only enable custom cursor for desktop (larger than 1024px)
   if (cursorDot && cursorOutline && window.innerWidth > 1024) {
     // Show cursors after page load
     setTimeout(() => {

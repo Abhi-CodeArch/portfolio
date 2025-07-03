@@ -186,8 +186,8 @@ class MouseParticleEffect {
   }
   
   createParticles() {
-    // Only create particles if mouse is moving and not on mobile
-    if (!this.isMouseMoving || window.innerWidth <= 1024) return;
+    // Only create particles if mouse is moving and not on mobile (check from utils.js is enough)
+    if (!this.isMouseMoving) return; 
     
     const { x, y } = this.mousePosition;
     
@@ -255,7 +255,8 @@ document.addEventListener('DOMContentLoaded', () => {
   new ParticleSystem('particles');
   
   // Initialize mouse particle effect for desktop only
-  if (window.innerWidth > 1024) {
-    new MouseParticleEffect();
-  }
+  // The check for window.innerWidth > 1024 is now handled in utils.js for custom cursor setup
+  // and implicitly affects if this effect creates particles through the `setupCustomCursor` call.
+  // The effect itself should still be initialized globally.
+  new MouseParticleEffect();
 });

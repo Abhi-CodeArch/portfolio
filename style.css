@@ -94,6 +94,11 @@ body {
   overflow-x: hidden;
 }
 
+/* Prevent body scroll when modal is open */
+body.modal-open {
+    overflow: hidden;
+}
+
 img {
   max-width: 100%;
   height: auto;
@@ -583,6 +588,50 @@ p {
   gap: var(--spacing-4);
 }
 
+/* Certifications & Awards Section */
+.certifications-awards-section {
+    margin-top: var(--spacing-20); /* Increased spacing from about content */
+    padding-top: var(--spacing-16); /* Padding for the top of the section */
+    border-top: 1px solid var(--color-border);
+}
+
+.certifications-awards-section h3 {
+    font-size: 1.8em;
+    color: var(--color-text); /* Assuming --color-heading is similar to --color-text */
+    margin-bottom: var(--spacing-10); /* Increased spacing */
+    text-align: center;
+}
+
+.certifications-list, .awards-list {
+    margin-bottom: var(--spacing-10); /* Spacing between lists */
+    text-align: center; /* Center align content */
+}
+
+.certifications-list h4, .awards-list h4 {
+    font-size: 1.3em;
+    color: var(--color-primary);
+    margin-bottom: var(--spacing-4);
+}
+
+.certifications-list p, .awards-list p {
+    margin-bottom: var(--spacing-3);
+    line-height: 1.5;
+    color: var(--color-text);
+}
+
+.certifications-list p a, .awards-list p a {
+    color: var(--color-primary);
+    text-decoration: none;
+    font-weight: 500;
+    transition: color var(--transition-fast), text-decoration var(--transition-fast);
+}
+
+.certifications-list p a:hover, .awards-list p a:hover {
+    text-decoration: underline;
+    color: var(--color-primary-dark);
+}
+
+
 /* Projects Section */
 .projects {
   padding: var(--spacing-24) 0;
@@ -662,6 +711,13 @@ p {
   background-color: var(--color-surface-2);
   border-radius: var(--border-radius-full);
   font-weight: 500;
+  color: var(--color-text-light); /* Ensure tag text color is readable */
+}
+
+/* Override default tag color for project details modal */
+.modal-content .project-tags .tag {
+    background-color: var(--color-surface-2);
+    color: var(--color-primary); /* Primary color for tags in modal */
 }
 
 .project-links {
@@ -683,6 +739,28 @@ p {
   color: var(--color-primary-dark);
 }
 
+.project-details-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--spacing-2) var(--spacing-4);
+  border-radius: var(--border-radius-md);
+  font-weight: 500;
+  background-color: var(--color-primary);
+  color: white;
+  transition: all var(--transition-fast);
+}
+
+.project-details-btn:hover {
+  background-color: var(--color-primary-dark);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+.project-details-btn svg {
+  margin-left: var(--spacing-1);
+}
+
 /* Skills Section */
 .skills {
   padding: var(--spacing-24) 0;
@@ -696,8 +774,9 @@ p {
   align-items: flex-start;
 }
 
+/* Ensure the technical skills grid is displayed */
 .skills-grid {
-  display: grid;
+  display: grid; /* Make sure this is explicitly set */
   grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
   gap: var(--spacing-8);
 }
@@ -742,8 +821,70 @@ p {
   transition: width 1.5s ease;
 }
 
-/* Experience Section */
-.experience {
+/* Other Skills Section (Languages, Soft Skills) */
+.other-skills {
+    margin-top: var(--spacing-16); /* Space above this section */
+    /* Ensure this section is also displayed as a grid */
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Responsive grid */
+    gap: var(--spacing-8);
+}
+
+.other-skills .skill-category {
+    background-color: var(--color-surface);
+    border-radius: var(--border-radius-lg);
+    padding: var(--spacing-6);
+    box-shadow: var(--shadow-md);
+    transition: all var(--transition-normal);
+    display: flex; /* Ensure flexbox for content centering */
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.other-skills .skill-category:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-lg);
+}
+
+.other-skills .skill-category h3 {
+    font-size: 1.5em;
+    color: var(--color-text); /* Use text color for heading */
+    margin-bottom: var(--spacing-6);
+    flex-shrink: 0; /* Prevent h3 from shrinking */
+}
+
+.other-skills ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    width: 100%; /* Ensure ul takes full width */
+}
+
+.other-skills ul li {
+    background-color: var(--color-surface-2);
+    padding: var(--spacing-3) var(--spacing-4);
+    border-radius: var(--border-radius-md);
+    margin-bottom: var(--spacing-3); /* Space between list items */
+    color: var(--color-text);
+    font-weight: 500;
+    transition: transform 0.2s ease, background-color 0.2s ease, color 0.2s ease;
+    text-align: center;
+}
+
+.other-skills ul li:last-child {
+    margin-bottom: 0; /* No margin for the last item */
+}
+
+.other-skills ul li:hover {
+    transform: translateY(-3px);
+    background-color: var(--color-primary-light);
+    color: white; /* Text color on hover for better contrast */
+}
+
+
+/* Education Section (Formerly Experience) */
+.education { /* Renamed from .experience */
   padding: var(--spacing-24) 0;
 }
 
@@ -777,6 +918,7 @@ p {
 .timeline-item:nth-child(even) .timeline-content {
   margin-left: 50%;
   padding-left: var(--spacing-12);
+  text-align: left; /* Ensure alignment for even items */
 }
 
 .timeline-item::before {
@@ -826,7 +968,7 @@ p {
   margin-bottom: var(--spacing-1);
 }
 
-.timeline-company {
+.timeline-company { /* Reused for institution name */
   color: var(--color-text-light);
   margin-bottom: var(--spacing-3);
 }
@@ -983,7 +1125,15 @@ input:focus, textarea:focus {
   opacity: 0;
   transform: translate(-50%, -50%);
   transition: opacity 0.3s ease;
-  display: none;
+  display: none; /* Hide by default, enabled by JS on desktop */
+}
+
+/* Only display custom cursor on desktop */
+@media (min-width: 1025px) {
+  .cursor-dot,
+  .cursor-outline {
+    display: block;
+  }
 }
 
 .cursor-dot {
@@ -996,7 +1146,7 @@ input:focus, textarea:focus {
   width: 40px;
   height: 40px;
   border: 2px solid var(--color-primary);
-  transition: transform 0.15s ease, width 0.3s ease, height 0.3s ease;
+  transition: transform 0.15s ease, width 0.3s ease, height 0.3s ease, background-color 0.3s ease; /* Added background-color transition */
 }
 
 /* Utility Classes */
@@ -1074,230 +1224,238 @@ input:focus, textarea:focus {
   }
 }
 
-/* Glitch Effect */
-.glitch {
-  position: relative;
+/* Project Details Modal Styles */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 10001; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgba(0,0,0,0.7); /* Black w/ opacity */
+    animation: fadeIn 0.3s ease-out;
 }
 
-.glitch::before,
-.glitch::after {
-  content: attr(data-text);
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  opacity: 0.8;
+.modal-content {
+    background-color: var(--color-surface); /* Use surface color */
+    margin: 10% auto; /* 10% from the top and centered */
+    padding: var(--spacing-10); /* Use spacing variables */
+    border-radius: var(--border-radius-lg);
+    width: 80%; /* Could be more or less, depending on screen size */
+    max-width: 700px;
+    position: relative;
+    box-shadow: var(--shadow-xl); /* Stronger shadow for modal */
+    animation: slideIn 0.3s ease-out;
 }
 
-.glitch::before {
-  color: var(--color-primary);
-  z-index: -1;
-  animation: glitch-animation 0.4s infinite;
+.modal-content h2 {
+    color: var(--color-text); /* Use text color for heading */
+    margin-bottom: var(--spacing-6);
+    font-size: 2.5rem; /* Larger heading */
 }
 
-.glitch::after {
-  color: var(--color-accent);
-  z-index: -2;
-  animation: glitch-animation 0.3s infinite reverse;
+.modal-content p {
+    color: var(--color-text-light);
+    line-height: 1.6;
+    margin-bottom: var(--spacing-8);
 }
 
-@keyframes glitch-animation {
-  0% {
-    transform: none;
-    opacity: 0.8;
-  }
-  7% {
-    transform: skew(-0.5deg, -0.9deg);
-    opacity: 0.7;
-  }
-  10% {
-    transform: none;
-    opacity: 0.8;
-  }
-  27% {
-    transform: none;
-    opacity: 0.8;
-  }
-  30% {
-    transform: skew(0.8deg, -0.1deg);
-    opacity: 0.7;
-  }
-  35% {
-    transform: none;
-    opacity: 0.8;
-  }
-  52% {
-    transform: none;
-    opacity: 0.8;
-  }
-  55% {
-    transform: skew(-1deg, 0.2deg);
-    opacity: 0.7;
-  }
-  50% {
-    transform: none;
-    opacity: 0.8;
-  }
-  72% {
-    transform: none;
-    opacity: 0.8;
-  }
-  75% {
-    transform: skew(0.4deg, 1deg);
-    opacity: 0.7;
-  }
-  80% {
-    transform: none;
-    opacity: 0.8;
-  }
-  100% {
-    transform: none;
-    opacity: 0.8;
-  }
+.modal-content .project-tags {
+    margin-top: var(--spacing-4);
+    margin-bottom: var(--spacing-6);
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--spacing-2);
 }
 
-/* Media Queries */
-@media (min-width: 1024px) {
-  .cursor-dot,
-  .cursor-outline {
-    display: block;
-  }
+.modal-content .project-tags .tag {
+    background-color: var(--color-surface-2);
+    color: var(--color-primary);
+    padding: var(--spacing-2) var(--spacing-3);
+    border-radius: var(--border-radius-full);
+    font-size: 0.9em;
+    font-weight: 500;
 }
 
+.modal-links {
+    display: flex;
+    gap: var(--spacing-4);
+    margin-top: var(--spacing-6);
+}
+
+.modal-links .btn {
+    padding: var(--spacing-3) var(--spacing-6);
+    font-size: 1em;
+    text-decoration: none;
+}
+
+.close-button {
+    color: var(--color-text-lighter);
+    position: absolute;
+    top: var(--spacing-4);
+    right: var(--spacing-6);
+    font-size: 2.5rem; /* Large enough to be clickable */
+    font-weight: bold;
+    cursor: pointer;
+    transition: color var(--transition-fast);
+}
+
+.close-button:hover,
+.close-button:focus {
+    color: var(--color-primary);
+    text-decoration: none;
+}
+
+/* Animations for modal */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes slideIn {
+    from { transform: translateY(-50px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+/* Responsive Adjustments */
 @media (max-width: 1024px) {
-  html {
-    font-size: 14px;
-  }
-  
-  .hero-content,
-  .about-content,
-  .skills-content,
-  .contact-content {
-    grid-template-columns: 1fr;
-    gap: var(--spacing-10);
-  }
-  
-  .hero-text {
-    order: 1;
-    text-align: center;
-    margin: 0 auto;
-  }
-  
-  .hero-image {
-    order: 0;
-    margin: 0 auto;
-    max-width: 400px;
-  }
-  
-  .hero-cta {
-    justify-content: center;
-  }
-  
-  .about-text {
-    order: 1;
-  }
-  
-  .about-image {
-    order: 0;
-    margin: 0 auto;
-    max-width: 400px;
-  }
-  
-  .experience-badge {
-    right: 0;
-  }
-}
-
-@media (max-width: 768px) {
-  h1 {
-    font-size: 3rem;
-  }
-  
-  h2 {
-    font-size: 2.25rem;
-  }
-  
   .nav-links {
-    position: fixed;
+    display: none;
+    flex-direction: column;
+    position: absolute;
     top: 5rem;
     left: 0;
-    right: 0;
+    width: 100%;
     background-color: var(--color-surface);
     box-shadow: var(--shadow-md);
-    padding: var(--spacing-6);
-    flex-direction: column;
-    gap: var(--spacing-6);
-    opacity: 0;
-    visibility: hidden;
-    transform: translateY(-10px);
-    transition: all var(--transition-normal);
+    padding: var(--spacing-4) 0;
+    text-align: center;
   }
-  
+
   .nav-links.active {
-    opacity: 1;
-    visibility: visible;
-    transform: translateY(0);
-  }
-  
-  .menu-toggle {
     display: flex;
   }
-  
-  .menu-toggle.active span:nth-child(1) {
-    transform: translateY(8px) rotate(45deg);
+
+  .nav-link {
+    padding: var(--spacing-3) 0;
   }
-  
+
+  .menu-toggle {
+    display: flex;
+    z-index: 101; /* Ensure it's above nav-links when open */
+  }
+
+  .menu-toggle.active span:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 5px);
+  }
+
   .menu-toggle.active span:nth-child(2) {
     opacity: 0;
   }
-  
-  .menu-toggle.active span:nth-child(3) {
-    transform: translateY(-8px) rotate(-45deg);
-  }
-  
-  .timeline::before {
-    left: 30px;
-  }
-  
-  .timeline-item::before {
-    left: 22px !important;
-  }
-  
-  .timeline-item:nth-child(odd) .timeline-content,
-  .timeline-item:nth-child(even) .timeline-content {
-    margin-right: 0;
-    margin-left: 60px;
-    padding-left: var(--spacing-4);
-    padding-right: var(--spacing-4);
-    text-align: left;
-  }
-}
 
-@media (max-width: 480px) {
-  h1 {
-    font-size: 2.5rem;
+  .menu-toggle.active span:nth-child(3) {
+    transform: rotate(-45deg) translate(5px, -5px);
   }
-  
-  h2 {
-    font-size: 2rem;
+
+  .hero-content {
+    grid-template-columns: 1fr;
+    text-align: center;
   }
-  
+
+  .hero-text {
+    max-width: 100%;
+    margin: 0 auto;
+  }
+
+  .hero-text h1 {
+    font-size: 3rem;
+  }
+
+  .hero-text h2 {
+    font-size: 1.5rem;
+  }
+
   .hero-cta {
-    flex-direction: column;
+    justify-content: center;
   }
-  
+
+  .hero-image {
+    order: -1; /* Move image above text on mobile */
+    margin-bottom: var(--spacing-10);
+  }
+
+  .about-content {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+
+  .about-image {
+    margin-bottom: var(--spacing-10);
+  }
+
   .about-info {
     grid-template-columns: 1fr;
   }
-  
-  .about-cta {
-    flex-direction: column;
+
+  .skills-content,
+  .contact-content {
+    grid-template-columns: 1fr;
   }
-  
+
+  .skills-text,
+  .contact-info {
+    margin-bottom: var(--spacing-10);
+  }
+
+  .timeline::before {
+    left: 18px; /* Adjust timeline line position */
+  }
+
+  .timeline-item:nth-child(odd) .timeline-content,
+  .timeline-item:nth-child(even) .timeline-content {
+    margin-left: 0;
+    margin-right: 0;
+    padding-left: var(--spacing-12);
+    padding-right: var(--spacing-4); /* Maintain some right padding */
+    text-align: left;
+  }
+
+  .timeline-item:nth-child(odd)::before,
+  .timeline-item:nth-child(even)::before {
+    left: 10px; /* Adjust dot position */
+    right: auto;
+  }
+
   .footer-content {
     flex-direction: column;
     gap: var(--spacing-4);
-    text-align: center;
+  }
+
+  .scroll-to-top {
+    margin-top: var(--spacing-4);
+  }
+
+  /* Modal responsive adjustments */
+  .modal-content {
+      width: 90%;
+      margin: 5% auto;
+      padding: var(--spacing-6);
+  }
+  .modal-content h2 {
+      font-size: 2rem;
+  }
+  .modal-links {
+      flex-direction: column;
+  }
+  .modal-links .btn {
+      width: 100%;
+  }
+
+  /* Hide custom cursor on smaller screens */
+  .cursor-dot,
+  .cursor-outline {
+    display: none !important;
   }
 }
