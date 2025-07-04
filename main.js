@@ -56,7 +56,7 @@ document.addEventListener("DOMContentLoaded", () => {
     },
     {
       degree: "SSLC",
-      institution: "St.Sacred Heart Boy's School",
+      institution: "Sacred Heart Boy's School",
       year: "2019 – 2020",
       grade: "70.64%"
     }
