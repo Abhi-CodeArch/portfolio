@@ -44,21 +44,21 @@ document.addEventListener("DOMContentLoaded", () => {
   const education = [
     {
       degree: "Bachelor of Computer Applications (BCA)",
-      institution: "St. Joseph's University, Bengaluru",
+      institution: "CICMS, Bengaluru",
       year: "2022 – 2025",
-      grade: "9.2 CGPA"
+      grade: "8.7 CGPA"
     },
     {
       degree: "PUC (PCMC)",
-      institution: "Christ Junior College",
+      institution: "St.Joseph's Pre-University College",
       year: "2020 – 2022",
-      grade: "85%"
+    
     },
     {
       degree: "SSLC",
-      institution: "St. Aloysius High School",
+      institution: "St.Sacred Heart Boy's School",
       year: "2019 – 2020",
-      grade: "94.08%"
+      grade: "70.64%"
     }
   ];
 
