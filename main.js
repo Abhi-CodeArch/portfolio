@@ -34,7 +34,7 @@ document.addEventListener("DOMContentLoaded", () => {
     { name: "C", level: "Intermediate" },
     { name: "HTML/CSS", level: "Expert" },
     { name: "JavaScript", level: "Intermediate" },
-    { name: "React", level: "Beginner" },
+    { name: "React", level: "Intermediate" },
     { name: "DevOps Basics", level: "Intermediate" }
   ];
 
